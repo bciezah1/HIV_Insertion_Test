@@ -1,4 +1,4 @@
-gene	# participants
+gene	Npart
 NPLOC4	17
 DNMT1	13
 QRICH1	12
@@ -6012,4 +6012,3 @@ UCP1	1
 HRAT5	1
 MIR624	1
 EBPL	1
-	0.0

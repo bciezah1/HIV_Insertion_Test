@@ -5,15 +5,25 @@ library(ggplot2)
 library(pheatmap)
 
 ##############################################
+#
+##############################################
+# Set the working directory to your desired path
+setwd("C:/Users/bciez/Documents/Basilio/UCSF/HIV_Insertion_Test/output")
+
+# Verify the current working directory
+getwd()
+
+
+##############################################
 # Step 1: Data Preparation
 ##############################################
 
 # Read the input data from the DESeq2 output (gene list ranked by frequency)
-df <- read.table("C:/Users/bciez/Documents/Basilio/UCSF/HIV_Insertion_Test/data/a1_table_ranked_by_most_freq_using60ENCONDES.csv", header=TRUE)
+df <- read.table("table_ranked_by_the_most_frequently_observed_gene_in_the_highest_number_of_patient_samples.txt", header=TRUE)
 head(df)  # Preview the first few rows of the data
 
 # Extract the span_count column (log2 fold change) to use as ranking values for GSEA
-original_gene_list <- df$gene_freq
+original_gene_list <- df$Npart
 
 # Assign gene names to the ranking vector
 names(original_gene_list) <- df$gene
@@ -45,7 +55,7 @@ str(fgsea_results)
 fgsea_results$leadingEdge <- sapply(fgsea_results$leadingEdge, function(x) paste(x, collapse = ";"))
 
 # Save the fgsea results to a CSV file for future use
-write.csv(fgsea_results, "C:/Users/bciez/Documents/Basilio/UCSF/HIV_Insertion_Test/output/gsea_results_most_freq_genes_C2_60encondes.csv", row.names = FALSE)
+write.table(fgsea_results, "GSEA_MostFreqGenes_C2_60encondes_09_23_2024.txt", row.names = FALSE)
 
 ##############################################
 # Step 3: Visualizing the Results
